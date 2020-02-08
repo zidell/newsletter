@@ -12,16 +12,17 @@
 		padding-left: 15px;
 		padding-right: 15px;
 		justify-content: space-between;
-		h1 {
+		a {
 			color: #fff;
 			margin: 0;
 			font-size: 1.6rem;
+			text-decoration: none;
 		}
 	}
 </style>
 
 <div class="header">
-	<h1>Newsletter</h1>
+	<a href="https://github.com/zidell/newsletter" target="_blank">Newsletter</a>
 	<div>
 		<button class="btn btn-outline" on:click={mode.set.bind(null, 'mobile')}>Mobile</button>
 		<button class="btn btn-outline" on:click={mode.set.bind(null, 'desktop')}>Desktop</button>
