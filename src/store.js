@@ -28,27 +28,6 @@ document
 	.getElementsByTagName('html')[0]
 	.classList.add(window.isTouch ? 'touch' : 'no-touch');
 
-let nowInterval;
-export const now = (() => {
-	const { subscribe, set } = writable(+new Date());
-
-	const init = () => {
-		nowInterval = setInterval(() => {
-			set(+new Date());
-		}, 1000 * 60);
-	};
-
-	const destroy = () => {
-		clearInterval(nowInterval);
-	};
-
-	return {
-		subscribe,
-		init,
-		destroy,
-	};
-})();
-
 export const mode = (() => {
 	const { subscribe, set } = writable('mobile');
 
