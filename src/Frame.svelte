@@ -105,7 +105,7 @@
 		<div id="body" class="content">
 			<div
 				class="m-wrapper"
-				style="font-size: 14px;line-height: 1.6em;padding: 0;width: 100%;height: 100%;background: #eeeff3;overflow-x: hidden;font-family: sans-serif;"
+				style="font-size: 14px; line-height: 1.6em; padding: 0; width: 100%; height: 100%; background: #eeeff3; overflow-x: hidden; font-family: sans-serif;"
 			>
 				<div class="m-header" style="background: #fff">
 					<div
@@ -115,11 +115,11 @@
 						<img
 							src="{$content.intro_image}"
 							on:click="{editor.open.bind(null, 'intro_image', '', $content.intro_image)}"
-							style="display: block;width: 106%;padding-top: 0;margin-left: -3%;margin-right: -3%;"
+							style="display: block; width: 106%; padding-top: 0; margin-left: -3%; margin-right: -3%;"
 						/>
 						<div
 							class="lead"
-							style="font-size: 1.1em;padding-top: 50px;padding-bottom: 50px;line-height: 1.7em;"
+							style="font-size: 1.1em; padding-top: 50px; padding-bottom: 50px; line-height: 1.7em;"
 							on:click="{editor.open.bind(null, 'intro', '', $content.intro)}"
 						>
 							{@html br($content.intro)}
@@ -128,11 +128,11 @@
 				</div>
 				<div
 					class="m-body"
-					style="padding: 10px 0;background: #eeeff3;"
+					style="padding: 10px 0; background: #eeeff3;"
 				>
 					<div
 						class="m-inner"
-						style="width: 100%;max-width: 650px;margin: 0 auto;padding: 0 3%;"
+						style="width: 100%; max-width: 650px; margin: 0 auto; padding: 0 3%;"
 					>
 						{#each $content.rows as row (row._id)}
 						<table
@@ -140,25 +140,25 @@
 							cellspacing="0"
 							border="0"
 							class="image-{row.image !== '' ? 'y' : 'n'}"
-							style="border: 0;background: #fff;margin: 15px 0;box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);width: 100%;"
+							style="border: 0; background: #fff; margin: 15px 0; box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); width: 100%;"
 						>
 							<tbody>
 								<tr style="display: block;">
 									{#if row.image !== ''}
 									<td
 										class="l"
-										style="vertical-align: top;display: block;width: 100%;text-align: center;padding: 30px 0 0 0;"
+										style="vertical-align: top; display: block; width: 100%; text-align: center; padding: 30px 0 0 0;"
 									>
 										<img
 											src="{row.image}"
 											on:click="{editor.open.bind(null, 'image', row._id, row.image)}"
-											style="background: #fff;padding: 0;width: 130px;height: 130px;border-radius: 100%;border: 1px solid rgba(0, 0, 0, 0.1);"
+											style="background: #fff; padding: 0; width: 130px; height: 130px; border-radius: 100%; border: 1px solid rgba(0, 0, 0, 0.1);"
 										/>
 									</td>
 									{/if}
 									<td
 										class="r"
-										style="vertical-align: top;vertical-align: middle;display: block;width: 100%;padding: 25px 15px 30px 15px;"
+										style="vertical-align: top; vertical-align: middle; display: block; width: 100%; padding: 25px 20px 30px 15px;"
 									>
 										<button
 											class="btn btn-xs manage btn-remove"
@@ -168,7 +168,7 @@
 										</button>
 										<h2
 											on:click="{editor.open.bind(null, 'title', row._id, row.title)}"
-											style="font-size: 1.3em;margin-bottom: 0.7em;font-weight: bold;margin-top:0;text-align:center;"
+											style="font-size: 1.3em; margin-bottom: 0.7em; font-weight: bold; margin-top: 0; text-align: center;"
 										>
 											{@html br(row.title)}
 										</h2>
@@ -187,14 +187,14 @@
 												href="{row.button.split('|')[1]}"
 												target="_blank"
 												on:click|preventDefault="{editor.open.bind(null, 'button', row._id, row.button)}"
-												style="display: inline-block;background: #1c7cff;color: #fff;text-decoration: none;padding: 8px 20px;border-radius: 7px;margin-top: 20px;"
+												style="display: inline-block; background: #1c7cff; color: #fff; text-decoration: none; padding: 8px 20px; border-radius: 7px; margin-top: 20px;"
 												>{row.button.split('|')[0]}</a
 											>
 											{:else}
 											<a
 												class="manage"
 												on:click|preventDefault="{editor.open.bind(null, 'button', row._id, row.button)}"
-												style="display: inline-block;background: #1c7cff;color: #fff;text-decoration: none;padding: 8px 20px;border-radius: 7px;margin-top: 20px;"
+												style="display: inline-block; background: #ddd; color: #fff; text-decoration: none; padding: 8px 20px; border-radius: 7px; margin-top: 20px;"
 											></a>
 											{/if}
 										</div>
@@ -215,11 +215,11 @@
 				<div class="m-footer" style="padding: 10px 0;background: #fff;">
 					<div
 						class="m-inner"
-						style="width: 100%;max-width: 650px;margin: 0 auto;padding: 0 3%;"
+						style="width: 100%; max-width: 650px; margin: 0 auto; padding: 0 3%;"
 					>
 						<div
 							class="lead"
-							style="font-size: 1.1em;padding-top: 50px;padding-bottom: 50px;line-height: 1.7em;"
+							style="font-size: 1.1em; padding-top: 50px; padding-bottom: 50px; line-height: 1.7em;"
 							on:click="{editor.open.bind(null, 'outro', '', $content.outro)}"
 						>
 							{@html br($content.outro)}
@@ -232,7 +232,7 @@
 						<div
 							class="m-bottom"
 							on:click="{editor.open.bind(null, 'bottom', '', $content.bottom)}"
-							style="text-align: center;font-size: 0.9em;line-height: 1.4;color: #aaa;margin-top: 40px;padding-bottom: 40px;"
+							style="text-align: center; font-size: 0.9em; line-height: 1.4; color: #aaa; margin-top: 40px; padding-bottom: 40px;"
 						>
 							{@html br($content.bottom)}
 						</div>
