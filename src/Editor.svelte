@@ -1,5 +1,65 @@
 <script>
+	import quill from 'quill';
 	import { editor } from './store.js';
+	import { onMount, afterUpdate } from 'svelte';
+
+	window.editor = null;
+	let nowChanging = false;
+	onMount(() => {
+		var toolbarOptions = [
+			['bold', 'strike', 'italic', 'underline'], // toggled buttons
+			[{ color: [] }, { background: [] }], // dropdown with defaults from theme
+			[{ align: [] }],
+			['clean'], // remove formatting button
+		];
+		window.editor = new quill('#editor', {
+			// debug: 'info',
+			modules: {
+				toolbar: toolbarOptions,
+			},
+			placeholder: '',
+			theme: 'snow',
+		});
+		window.editor.id = null;
+		window.editor.customFocus = () => {
+			if (window.isTouch) {
+				if (/iphone|ipad/i.test(navigator.userAgent)) {
+					window.editor.root.blur();
+				}
+			} else {
+				window.editor.focus();
+			}
+		};
+		window.editor.getHtml = () => {
+			// we want the content, not some Delta thingy or plain text without the formatting
+			return window.editor.root.innerHTML;
+		};
+
+		window.editor.setHtml = text => {
+			// resets the window.editor to empty
+			// console.log('setHtml', text);
+			nowChanging = true;
+			window.editor.setContents([]);
+			// initialize the content to exactly what we have in our server (i.e. what we saved the last time as validated/sanitized by our server)
+			window.editor.clipboard.dangerouslyPasteHTML(0, text);
+			window.editor.beforeContent = window.editor.getHtml();
+			window.editor.customFocus();
+			window.editor.history.clear();
+			nowChanging = false;
+			window.editor.root.scrollTop = 0;
+		};
+
+		window.editor.on('text-change', function() {
+			if (nowChanging) {
+				return false;
+			}
+			const content = window.editor.getHtml();
+			if (window.editor.beforeContent !== content) {
+				window.editor.beforeContent = content;
+				// currentNote.addSavingStack('content', content);
+			}
+		});
+	});
 </script>
 
 <style lang="scss">
@@ -45,16 +105,12 @@
 
 <div class="editor enabled-{$editor.enabled}">
 	<div class="editor-inner">
-		<textarea
-			id="editor-textarea"
-			cols="30"
-			rows="10"
-			readonly="{$editor.readonly}"
-			bind:value={$editor.content}
-		/>
+		<div id="editor"></div>
 		<div class="text-center">
 			{#if $editor.readonly === false}
-			<button class="btn btn-primary" on:click="{editor.confirm}">Confirm</button>
+			<button class="btn btn-primary" on:click="{editor.confirm}">
+				Confirm
+			</button>
 			{/if}
 			<button class="btn" on:click="{editor.close}">Close</button>
 		</div>

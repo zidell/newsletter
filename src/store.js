@@ -75,6 +75,8 @@ export const content = (() => {
 		const _ = get(content);
 		if (key.indexOf('image') > -1) {
 			value = extractOnlyUrl(value);
+		} else if (key.indexOf('button') > -1) {
+			value = value.replace(/<\/?p>/g, '');
 		}
 		if (rowId !== '') {
 			const index = _.rows.findIndex(r => r._id === rowId);
@@ -170,7 +172,6 @@ export const editor = (() => {
 	const { subscribe, set, update } = writable({
 		enabled: false,
 		readonly: false,
-		content: '',
 	});
 
 	const open = (key, rowId, content) => {
@@ -180,18 +181,17 @@ export const editor = (() => {
 		callbackRowId = rowId;
 		_.enabled = true;
 		_.readonly = key === '';
-		_.content = content;
 		set(_);
 
+		window.editor.setHtml(content);
+
 		setTimeout(() => {
-			jQuery('#editor-textarea')
-				.focus()
-				.select();
+			window.editor.focus();
 		}, 100);
 	};
 
 	const confirm = () => {
-		content.setIn(callbackKey, callbackRowId, get(editor).content);
+		content.setIn(callbackKey, callbackRowId, window.editor.getHtml());
 		editor.close();
 	};
 
