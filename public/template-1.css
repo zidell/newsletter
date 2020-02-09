@@ -11,7 +11,7 @@ s {
 }
 
 
-@media only screen and (min-width: 1480px) {
+@media only screen and (min-width: 480px) {
     .m-wrapper {
         font-size: 15px !important;
     }
@@ -25,8 +25,8 @@ s {
     }
 
     .lead {
-        padding-top: 70px !important !important;
-        padding-bottom: 70px !important !important;
+        padding-top: 70px !important;
+        padding-bottom: 70px !important;
     }
 
     table {
@@ -57,7 +57,7 @@ s {
     }
 }
 
-@media only screen and (min-width: 1650px) {
+@media only screen and (min-width: 650px) {
     .m-header img {
         padding-top: 3% !important;
         width: 100% ! important;
