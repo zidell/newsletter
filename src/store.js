@@ -143,6 +143,8 @@ export const generate = async () => {
 	const css = await response.text();
 
 	const body = jQuery('#body').html();
+	const tmpBody = jQuery('<div>' + body + '</div>');
+	tmpBody.find('.manage').remove();
 
 	const result = `<!DOCTYPE html>
 <html lang="ko" style="padding: 0;margin: 0;">
@@ -158,7 +160,7 @@ export const generate = async () => {
 	</style>
 </head>
 <body style="padding: 0;margin: 0;">
-	${body}
+	${tmpBody.html()}
 </body>
 </html>`;
 
