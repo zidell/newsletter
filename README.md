@@ -13,3 +13,7 @@ https://newsletter.zidell.now.sh
 ## 기능
 
 - 주소창의 URL을 복사하면 모든 내용을 그대로 되살릴 수 있음 -> back:undo, forward:redo, default template, save/load 용도로 사용 가능
+
+## License
+
+MIT
