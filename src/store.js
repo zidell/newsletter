@@ -74,9 +74,9 @@ export const content = (() => {
 	const setIn = (key, rowId, value) => {
 		const _ = get(content);
 		if (key.indexOf('image') > -1) {
-			value = extractOnlyUrl(value);
+			value = extractOnlyUrl(value.trim().replace(/<\/?(p|br)>/g, ''));
 		} else if (key.indexOf('button') > -1) {
-			value = value.replace(/<\/?p>/g, '');
+			value = value.trim().replace(/<\/?(p|br)>/g, '');
 		}
 		if (rowId !== '') {
 			const index = _.rows.findIndex(r => r._id === rowId);
@@ -145,6 +145,7 @@ export const generate = async () => {
 	const body = jQuery('#body').html();
 	const tmpBody = jQuery('<div>' + body + '</div>');
 	tmpBody.find('.manage').remove();
+	tmpBody.find('*').css('box-sizing', 'border-box');
 
 	const result = `<!DOCTYPE html>
 <html lang="ko" style="padding: 0;margin: 0;">
