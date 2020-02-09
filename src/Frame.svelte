@@ -104,7 +104,7 @@
 	<div class="frame-inner {$mode}">
 		<div id="body" class="content">
 			<div
-				class="m-wrapper"
+				class="m-wrapper {$mode}"
 				style="font-size: 14px; line-height: 1.6em; padding: 0; width: 100%; height: 100%; background: #eeeff3; overflow-x: hidden; font-family: sans-serif;"
 			>
 				<div class="m-header" style="background: #fff">

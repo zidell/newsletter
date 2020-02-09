@@ -16,43 +16,43 @@ s {
         font-size: 15px !important;
     }
 
-    .m-body {
+    .m-wrapper:not(.mobile) .m-body {
         padding: 20px 0 !important;
     }
 
-    .m-footer {
+    .m-wrapper:not(.mobile) .m-footer {
         padding: 0 20px 30px 20px !important;
     }
 
-    .lead {
+    .m-wrapper:not(.mobile) .lead {
         padding-top: 70px !important;
         padding-bottom: 70px !important;
     }
 
-    table {
+    .m-wrapper:not(.mobile) table {
         margin: 30px 0 !important;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.05) !important;
     }
 
-    table>tbody>tr>td.l img {
+    .m-wrapper:not(.mobile) table>tbody>tr>td.l img {
         width: 100% !important;
         border-radius: 0 !important;
     }
 
-    table>tbody>tr>td.l {
+    .m-wrapper:not(.mobile) table>tbody>tr>td.l {
         padding: 30px 0 30px 30px !important;
         width: 35% !important;
         display: table-cell !important;
     }
 
-    table>tbody>tr>td.r {
+    .m-wrapper:not(.mobile) table>tbody>tr>td.r {
         width: 65% !important;
         padding: 30px !important;
         display: table-cell !important;
     }
 
-    h2,
-    .cta {
+    .m-wrapper:not(.mobile) h2,
+    .m-wrapper:not(.mobile) .cta {
         text-align: left !important;
     }
 }

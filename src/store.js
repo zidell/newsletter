@@ -140,7 +140,8 @@ export const generate = async () => {
 	const reset = await response.text();
 
 	response = await fetch(`/template-1.css`);
-	const css = await response.text();
+	let css = await response.text();
+	css = css.replace(/\.m-wrapper:not\(\.mobile\)/g, '');
 
 	const body = jQuery('#body').html();
 	const tmpBody = jQuery('<div>' + body + '</div>');
