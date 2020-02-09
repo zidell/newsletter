@@ -175,6 +175,7 @@ export const editor = (() => {
 	});
 
 	const open = (key, rowId, content) => {
+		console.log('key', key);
 		const _ = get(editor);
 
 		callbackKey = key;
@@ -186,7 +187,7 @@ export const editor = (() => {
 		window.editor.setHtml(content);
 
 		setTimeout(() => {
-			window.editor.focus();
+			window.editor.customFocus();
 		}, 100);
 	};
 

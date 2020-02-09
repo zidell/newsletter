@@ -1,15 +1,14 @@
 <script>
 	import quill from 'quill';
+	import jQuery from 'jquery';
 	import { editor } from './store.js';
 	import { onMount, afterUpdate } from 'svelte';
 
 	window.editor = null;
-	let nowChanging = false;
 	onMount(() => {
 		var toolbarOptions = [
 			['bold', 'strike', 'italic', 'underline'], // toggled buttons
 			[{ color: [] }, { background: [] }], // dropdown with defaults from theme
-			[{ align: [] }],
 			['clean'], // remove formatting button
 		];
 		window.editor = new quill('#editor', {
@@ -27,7 +26,11 @@
 					window.editor.root.blur();
 				}
 			} else {
-				window.editor.focus();
+				if($editor.readonly) {
+					jQuery('#editor-textarea').focus().select();
+				} else {
+					window.editor.focus();
+				}
 			}
 		};
 		window.editor.getHtml = () => {
@@ -36,23 +39,22 @@
 		};
 
 		window.editor.setHtml = text => {
-			// resets the window.editor to empty
-			// console.log('setHtml', text);
-			nowChanging = true;
-			window.editor.setContents([]);
-			// initialize the content to exactly what we have in our server (i.e. what we saved the last time as validated/sanitized by our server)
-			window.editor.clipboard.dangerouslyPasteHTML(0, text);
-			window.editor.beforeContent = window.editor.getHtml();
-			window.editor.customFocus();
-			window.editor.history.clear();
-			nowChanging = false;
-			window.editor.root.scrollTop = 0;
+			if($editor.readonly) {
+				jQuery('#editor-textarea').val(text);
+			} else {
+				// resets the window.editor to empty
+				// console.log('setHtml', text);
+				window.editor.setContents([]);
+				// initialize the content to exactly what we have in our server (i.e. what we saved the last time as validated/sanitized by our server)
+				window.editor.clipboard.dangerouslyPasteHTML(0, text);
+				window.editor.beforeContent = window.editor.getHtml();
+				window.editor.customFocus();
+				window.editor.history.clear();
+				window.editor.root.scrollTop = 0;
+			}
 		};
 
 		window.editor.on('text-change', function() {
-			if (nowChanging) {
-				return false;
-			}
 			const content = window.editor.getHtml();
 			if (window.editor.beforeContent !== content) {
 				window.editor.beforeContent = content;
@@ -87,6 +89,25 @@
 			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 			display: flex;
 			flex-direction: column;
+			&.readonly-y {
+				#editor-textarea {
+					display: block;
+				}
+				#editor {
+					display: none;
+				}
+				:global(.ql-toolbar) {
+					display: none!important;
+				}
+			}
+			&.readonly-n {
+				#editor-textarea {
+					display: none;
+				}
+				#editor {
+					display: block;
+				}
+			}
 			textarea {
 				width: 100%;
 				flex: 1;
@@ -104,8 +125,15 @@
 </style>
 
 <div class="editor enabled-{$editor.enabled}">
-	<div class="editor-inner">
+	<div class="editor-inner readonly-{$editor.readonly ? 'y' : 'n'}">
 		<div id="editor"></div>
+		<textarea
+			id="editor-textarea"
+			cols="30"
+			rows="10"
+			readonly="readonly"
+		/>
+
 		<div class="text-center">
 			{#if $editor.readonly === false}
 			<button class="btn btn-primary" on:click="{editor.confirm}">
