@@ -163,6 +163,7 @@
 											>
 											{:else}
 											<a
+												class="manage"
 												on:click|preventDefault="{editor.open.bind(null, 'button', row._id, row.button)}"
 											></a>
 											{/if}

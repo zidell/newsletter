@@ -107,7 +107,7 @@ hr {
     display: none;
 }
 
-.m-body a {
+.m-body .cta a {
     display: inline-block;
     background: #1c7cff;
     color: #fff;
