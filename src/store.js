@@ -212,7 +212,7 @@ export const editor = (() => {
 
 const extractOnlyUrl = str => {
 	const matches = str.match(/https?:\/\/[a-z0-9\.\-_\/]+/gi);
-	if (matches.length > 0) {
+	if (matches !== null && matches.length > 0) {
 		return matches[0];
 	}
 	return str;
