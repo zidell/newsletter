@@ -4,7 +4,7 @@
 
 ## DEMO
 
-https://newsletter.zidell.now.sh
+https://newsletter.zidell.me
 
 ## 테스트 대상
 
