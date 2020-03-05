@@ -47,7 +47,7 @@ export const content = (() => {
 			title: 'Id est sint consequat esse pariatur',
 			desc:
 				'Minim commodo et nostrud dolor deserunt duis enim. Voluptate deserunt laboris sint enim aliquip laboris proident duis Lorem.',
-			button: 'Label|https://google.com',
+			button: 'Label | https://google.com',
 		};
 	};
 
@@ -74,9 +74,9 @@ export const content = (() => {
 	const setIn = (key, rowId, value) => {
 		const _ = get(content);
 		if (key.indexOf('image') > -1) {
-			value = extractOnlyUrl(value.trim().replace(/<\/?(p|br)>/g, ''));
+			value = extractOnlyUrl(cleanHtml(value.trim()));
 		} else if (key.indexOf('button') > -1) {
-			value = value.trim().replace(/<\/?(p|br)>/g, '');
+			value = cleanHtml(value.trim());
 		}
 		if (rowId !== '') {
 			const index = _.rows.findIndex(r => r._id === rowId);
@@ -222,3 +222,7 @@ const extractOnlyUrl = str => {
 	}
 	return str;
 };
+
+const cleanHtml = html => {
+	return jQuery('<div></div>').html(html).text();
+}
