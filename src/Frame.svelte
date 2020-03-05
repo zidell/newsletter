@@ -152,7 +152,7 @@
 										<img
 											src="{row.image}"
 											on:click="{editor.open.bind(null, 'image', row._id, row.image)}"
-											style="background: #fff; padding: 0; width: 130px; height: 130px; border-radius: 100%; border: 1px solid rgba(0, 0, 0, 0.1);"
+											style="background: #fff; padding: 0; width: 130px; height: 130px; border-radius: 100%; border: 1px solid rgba(0, 0, 0, 0.1);object-fit:contain;"
 										/>
 									</td>
 									{/if}
