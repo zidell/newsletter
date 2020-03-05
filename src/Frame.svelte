@@ -15,6 +15,14 @@
 		}
 	};
 
+	const displayButton = (combi, index) => {
+		const tmp = combi.split('|');
+		if (typeof tmp[index] === 'undefined') {
+			index = 0;
+		}
+		return tmp[index].trim();
+	};
+
 	const br = value => {
 		return value.replace(/\n/g, '<br />');
 	};
@@ -171,11 +179,11 @@
 										>
 											{#if row.button !== ''}
 											<a
-												href="{row.button.split('|')[1].trim()}"
+												href="{displayButton(row.button, 1)}"
 												target="_blank"
 												on:click|preventDefault="{editor.open.bind(null, 'button', row._id, row.button)}"
 												style="display: inline-block; background: #1c7cff; color: #fff; text-decoration: none; padding: 8px 20px; border-radius: 7px; margin-top: 20px;"
-												>{row.button.split('|')[0].trim()}</a
+												>{displayButton(row.button, 0)}</a
 											>
 											{:else}
 											<a
