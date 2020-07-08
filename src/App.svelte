@@ -37,6 +37,11 @@
 		&:active {
 			opacity: 1;
 		}
+		&:active,
+		&:focus {
+			outline: none;
+			box-shadow: none;
+		}
 		&.btn-primary {
 			background: #1c7cff;
 			color: #fff;

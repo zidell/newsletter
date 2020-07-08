@@ -42,6 +42,7 @@
 		justify-content: center;
 
 		.frame-inner {
+			position: relative;
 			border: 3px solid #bbb;
 			border-top: 30px solid #bbb;
 			width: 100%;
@@ -58,6 +59,32 @@
 				border-bottom: 40px solid #222;
 				border-radius: 30px;
 				width: 340px;
+			}
+
+			&.desktop #frame-header {
+				position: absolute;
+				top: -20px;
+				left: 10px;
+				background: #f15555;
+				width: 12px;
+				height: 12px;
+				border-radius: 100%;
+
+				&::before,
+				&::after {
+					content: '';
+					position: absolute;
+					background: red;
+					width: 12px;
+					height: 12px;
+					border-radius: 100%;
+					left: 40px;
+					background: #19f70d;
+				}
+				&::before {
+					left: 20px;
+					background: #ffcb00;
+				}
 			}
 
 			.content {
@@ -114,6 +141,7 @@
 
 <div class="frame">
 	<div class="frame-inner {$mode}">
+		<div id="frame-header"></div>
 		<div id="body" class="content">
 			<div class="m-wrapper {$mode}"
 				style="font-size: 14px; line-height: 1.6em; padding: 0; width: 100%; height: 100%; background: #eeeff3; overflow-x: hidden; font-family: sans-serif;">
