@@ -91,18 +91,20 @@
 				.btn-create {
 					margin: 40px auto;
 					background: #1c7cff;
+					border:0;
 					border-radius: 100%;
 					line-height: 1;
-					display: block;
+					display: flex;
 					width: 60px;
 					height: 60px;
 					box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+					align-items: center;
+					justify-content: center;
 
 					>span {
 						font-size: 4em;
 						color: #fff;
 						position: relative;
-						top: -4px;
 					}
 				}
 			}
